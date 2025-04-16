@@ -4,6 +4,8 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/60177191?v=4&size=64" />
     <title>HDC</title>
 
     <!-- CSS -->
@@ -11,18 +13,95 @@
 
     <!-- JS -->
     <script src="js/script.js" defer></script>
-    <script src="js/localstorage.js" defer></script>
 </head>
 
 <body>
     <header>
         <section class="container">
             <h1>Onderwaterdammen</h1>
+
+            <nav class="settings" tabindex="-1">
+                <h3>Instellingen</h3>
+                <fieldset>
+                    <legend>Font</legend>
+                    <div>
+                        <label>
+                            Font grootte:
+                            <select id="fontSize" onchange="changeFontSize(this)">
+                                <option value="16px">Standaard</option>
+                                <option value="12px">12px</option>
+                                <option value="14px">14px</option>
+                                <option value="18px">18px</option>
+                                <option value="24px">24px</option>
+                                <option value="30px">30px</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Font type:
+                            <select id="fontType" onchange="changeFontType(this)">
+                                <option value="arial">Standaard</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Font kleur:
+                            <input type="color" id="fontColor" value="#ffff00" onchange="changeFontColor(this);" />
+                        </label>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Container</legend>
+                    <div>
+                        <label>
+                            Container grootte:
+                            <select id="containerWidth" onchange="changeContainerWidth(this)">
+                                <option value="30em">Standaard</option>
+                                <option value="20em">20em</option>
+                                <option value="25em">25em</option>
+                                <option value="35em">35em</option>
+                                <option value="40em">40em</option>
+                                <option value="45em">45em</option>
+                            </select>
+                        </label>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Achtergrondkleur</legend>
+                    <div>
+                        <label>
+                            Achtergrondkleur:
+                            <input type="color" id="backgroundColor" value="#000000"
+                                onchange="changeBackgroundColor(this);" />
+                        </label>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Lezer</legend>
+                    <!-- Volume control slider -->
+                    <label>
+                        Volume:
+                        <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+                    </label>
+
+                    <br />
+
+                    <!-- Rate control slider -->
+                    <label>
+                        Rate:
+                        <input type="range" id="rateSlider" min="0.5" max="5" step="0.1" value="1">
+                    </label>
+                </fieldset>
+            </nav>
+
+            <button onclick="readPage(this);">🔊 Voorlezen</button>
         </section>
     </header>
 
     <main>
-        <section class="container">
+        <section class="container content">
             <div>
                 <p>
                     Onderwaterdammen schijnt een sport te zijn, veel mensen denken dat deze sport mythisch is en dus
@@ -186,11 +265,16 @@
                 </p>
             </div>
         </section>
+
+
     </main>
 
-    <footer>
-
-    </footer>
+    <aside class="annotations">
+        <h2>Annotaties</h2>
+        <div class="annotatieContainer">
+            <ul class="annotatieLijst"></ul>
+        </div>
+    </aside>
 </body>
 
 </html>

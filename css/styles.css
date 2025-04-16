@@ -3,25 +3,43 @@
     --color-text: #ff0;
 
     --border-radius: 5px;
+    --container-width: 30em;
+}
+
+html {
+    font-family: quicksand-regular;
+    scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 body {
     background-color: var(--color-background);
     color: var(--color-text);
+    width: 100%;
     margin: 0;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 2fr 1fr;
     grid-template-rows: auto 1fr auto;
+
+    color: var(--color-text);
 }
 
 .container {
-    max-width: 1440px;
+    max-width: var(--container-width);
     margin: 0 auto;
 
-    @media screen and (max-width: 1440px) { padding: 0 1em; }
+    @media screen and (max-width: 30em) {
+        padding: 0 1em;
+    }
 }
 
-button, a[role="button"] {
+button,
+a[role="button"] {
     background-color: var(--color-background);
     color: var(--color-text);
     border: 1px solid var(--color-text);
@@ -31,7 +49,8 @@ button, a[role="button"] {
     border-radius: var(--border-radius);
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
         background-color: var(--color-text);
         color: var(--color-background);
         border-color: var(--color-background);
@@ -57,3 +76,101 @@ textarea {
     }
 }
 
+select {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    border: 1px solid var(--color-text);
+    padding: 0.5em;
+    border-radius: var(--border-radius);
+    width: 100%;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+
+    &:focus {
+        outline: none;
+        background-color: var(--color-text);
+        color: var(--color-background);
+        border-color: var(--color-background);
+    }
+}
+
+header {
+    grid-column: 1;
+    grid-row: 1;
+
+
+    nav {
+        position: fixed;
+        right: 0;
+        top: 0;
+        padding: 1em;
+        display: none;
+        background-color: var(--color-background);
+        border-radius: var(--border-radius);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        z-index: 10;
+        transition: all 0.3s ease-in-out;
+        transform: translateY(-100%);
+
+        &.active {
+            display: block;
+            transform: translateY(0);
+        }
+
+        label {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+        }
+    }
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 1em;
+    padding: 1em;
+    grid-column: 1;
+    grid-row: 2;
+
+    .content div {
+        position: relative;
+    }
+}
+
+aside {
+    background-color: #444;
+    padding: 1em;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+
+    ul {
+        padding: 0;
+        margin: 0;
+
+        li {
+            list-style-type: none;
+
+            &::before {
+                content: "Annotatie: ";
+            }
+        }
+    }
+}
+
+.annotation-box {
+    padding: 1em;
+    background-color: #444;
+    border-radius: var(--border-radius);
+    pointer-events: none;
+    z-index: 10;
+}
+
+.annotatieContainer {
+    overflow-y: auto;
+    max-height: 80vh;
+    height: 80vh;
+    width: 100%;
+    position: sticky;
+    top: 1rem;
+}
