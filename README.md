@@ -5,9 +5,6 @@
 *02-04-2025*
 
 <details>
-<summary><h2>Week 1</h2></summary>
-
-<details>
 <summary><h3>Voor wie is de opdracht?</h3></summary>
 
 
@@ -85,4 +82,53 @@ geel op zwart is een goede kleur
 roger ravilie
 
 </details>
-</details>
+
+## exclusive design principles
+
+### Study situation
+
+Tijdens de introdag heb ik meegeschreven wat de wensen en eisen zijn van Roger. Deze wensen zijn per testdag verfijnd en aangepast.
+
+### Ignore conventions
+
+Om te zorgen dat Roger makkelijk door de menu's kan navigeren heb ik een `Focus trap` gemaakt zodat het toggelen van instellingen makkelijker kan. Dit is geen normale conventie omdat dit zorgt dat je niet met alleen de `tab` key door de hele site kan navigeren.
+
+### Prioritise identity
+
+Roger vindt rustiek erg belangerijk en heeft veel moeite met het vinden van de toetsen. Hierom heb ik de interactie knoppen op `J` en `F` gezet. Dit is omdat deze knoppen een bumper hebben. Dit zorgt ervoor dat deze makkelijk gevonden kunnen worden.
+
+### Add nonsense
+
+Roger heeft aangegeven dat de kleuren die voor hem fijn zijn om te gebruiken heb ik deze kleuren verwerkt in mijn site. Deze kleuren zijn zo aan te passen dat je de achtergrond en font kleur hetzelfde kan maken. Dit maakt de site voor mensen met goed zicht niet bruikbaar. Echter heeft Roger hier niet veel last van want die gebruikt alleen het toetsenbord.
+
+## Iteratie 1
+
+Ik heb een tekst uit wikipedia gepakt en deze op mijn website gezet. De teksten heb ik in een `<p>` tag geplaats en deze een `tabindex="0"` gegeven zodat de tab knop naar deze elementen focussed. Ook heb ik een annotatie element gemaakt die wordt toegevoegd aan de html als de `enter` toets word ingeklikt. Het annotatie wordt toegevoegd onder het element wat gefocussed is.
+
+## iteratie 2
+
+Ik heb een menu boven de tekst gepaatst zodat de gebruiker zelf een aantal opties kan aanpassen zoals:
+
+- Font grootte;
+- Font kleur;
+- Container grootte;
+- Achterground kleur;
+- Lezer snelheid;
+- Lezer volume.
+
+## Iteratie 3
+
+Het opties menu heb ik verstopt en op **klik** van de `J` toets laat ik het menu verschijnen. Er is ook een lijst met annotaties aan de zijkant toegevoegd zodat de gebruiker makkelijk kan zien welke annotaties er gemaakt zijn. Deze annotaties zijn interactief en lijden de gebruiker naar de annotatie in de tekst zodat de gebruiker weet waar de annotatie staat en onder welke tekst deze is geplaatst.
+
+De annotaties zijn verwijderbaar door een knop onder de lijst.
+
+## Iteratie 4
+
+Elke annotatie is nu zelf verwijderbaar zodat bij grootte hoeveelheden aan annotaties niet elke wordt verwijderd.
+Als de gebruiker wilt dat alle annotaties worden verwijderd kan dit nogsteeds met de knop. Echter krijgt de gebruiker nu een alertbox zodat de gebruiker niet perongeluk de annotaties verwijderd. Bij het drukken van de `f` toets wordt de focus nu gezet op de voorleesknop zodat de gebruiker terugkan naar de tekst.
+
+Het instellingen menu was nu duidelijk voor de gebruiker.
+
+## Link
+
+[Link naar project](https://tymonl.github.io/HCD/)

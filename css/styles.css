@@ -76,6 +76,12 @@ textarea {
     }
 }
 
+input[type="range"] {
+    &:focus{
+        accent-color: var(--color-text);
+    }
+}
+
 select {
     background-color: var(--color-background);
     color: var(--color-text);
@@ -150,12 +156,22 @@ aside {
 
         li {
             list-style-type: none;
+            display: flex;
+
+            a:last-child {
+                margin-left: auto;
+                font-family: f;
+            }
 
             &::before {
                 content: "Annotatie: ";
             }
         }
     }
+}
+
+.annotation {
+    color: cadetblue;
 }
 
 .annotation-box {

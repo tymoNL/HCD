@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.addEventListener("keydown", function (event) {
         const activeElement = document.activeElement;
-        const isTyping = activeElement.tagName === "INPUT" || activeElement.tagName === "TEXTAREA" || activeElement.isContentEditable;
+        const isTyping = activeElement.tagName === "TEXTAREA" || activeElement.isContentEditable;
 
         if (!isTyping && event.key === "j") {
             event.preventDefault();
@@ -23,15 +23,18 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function DeleteAnnotations() {
-    localStorage.removeItem('annotations');
-    document.querySelectorAll('.annotation').forEach(el => el.remove());
-    const list = document.querySelector('.annotatieLijst');
-    if (list) list.innerHTML = '';
-    i = 0;
+    if (confirm("Weet je zeker dat je alle annotaties wilt verwijderen?")) {
+        localStorage.removeItem('annotations');
+        document.querySelectorAll('.annotation').forEach(el => el.remove());
+        const list = document.querySelector('.annotatieLijst');
+        if (list) list.innerHTML = '';
+        i = 0;
+    }
 }
 
 function FocusAnnotationList() {
     const annotationList = document.querySelector('.annotatieContainer');
+    const readPageButton = document.querySelector('#readPage');
 
     if (annotationList) {
         annotationList.classList.toggle('active');
@@ -52,6 +55,7 @@ function FocusAnnotationList() {
                 annotationList.removeEventListener('keydown', annotationTrapHandler);
                 annotationTrapHandler = null;
                 console.log("Focus trap deactivated");
+                readPageButton.focus();
             }
         }
     }
@@ -180,7 +184,10 @@ function saveAnnotation(annotationBox, p) {
         p.after(annotation);
 
         const annotationLink = document.createElement("li");
-        annotationLink.innerHTML = `<a href="#${annotationId}">${annotationText}</a>`;
+        annotationLink.innerHTML = `
+        <a href="#${annotationId}">${annotationText}</a>
+        <a href="javascript:;" class="delete-annotation" aria-label="Verwijder annotatie" onclick="RemoveThisAnnotation(this);"><i class="fa-regular fa-circle-xmark"></i></a>
+        `;
         const annotatieLijst = document.querySelector('.annotatieLijst');
         if (annotatieLijst) {
             annotatieLijst.appendChild(annotationLink);
@@ -227,7 +234,10 @@ function loadAnnotationsFromStorage() {
         paragraph.after(annotation);
 
         const annotationLink = document.createElement("li");
-        annotationLink.innerHTML = `<a href="#${a.id}">${a.text}</a>`;
+        annotationLink.innerHTML = `
+        <a href="#${a.id}">${a.text}</a>
+        <a href="javascript:;" class="delete-annotation" aria-label="Verwijder annotatie" onclick="RemoveThisAnnotation(this);"><i class="fa-regular fa-circle-xmark"></i></a>
+        `;
         const annotatieLijst = document.querySelector('.annotatieLijst');
         if (annotatieLijst) {
             annotatieLijst.appendChild(annotationLink);
@@ -295,6 +305,15 @@ function readPage(button) {
         synth.speak(utterance);
         button.textContent = "🔇 Stoppen";
     }
+}
+
+function RemoveThisAnnotation(obj) {
+    obj.parentElement.remove();
+    const annotationId = obj.parentElement.querySelector('a').getAttribute('href').substring(1);
+    const stored = getStoredAnnotations();
+    const updated = stored.filter(a => a.id !== annotationId);
+    localStorage.setItem('annotations', JSON.stringify(updated));
+    document.getElementById(annotationId).remove();
 }
 
 // Settings
